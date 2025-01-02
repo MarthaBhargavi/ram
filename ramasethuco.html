@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+function largestSubsequenceDivisibleByFive(stones) {
+    let maxLength = 0;
+    let maxSubsequence = [];
+
+    for (let i = 0; i < stones.length; i++) {
+        let sum = 0;
+        let tempSubsequence = [];
+
+        for (let j = i; j < stones.length; j++) {
+            sum += stones[j];
+            tempSubsequence.push(stones[j]);
+
+            if (sum % 5 === 0) {
+                if (
+                    tempSubsequence.length > maxLength ||
+                    (tempSubsequence.length === maxLength && sum > maxSubsequence.reduce((a, b) => a + b, 0))
+                ) {
+                    maxLength = tempSubsequence.length;
+                    maxSubsequence = [...tempSubsequence];
+                }
+            }
+        }
+    }
+
+    return maxSubsequence;
+}
+
+
+const stones = [2, 3, 5, 7, 11,13];
+console.log(largestSubsequenceDivisibleByFive(stones)); 
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
